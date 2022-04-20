@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <tlhelp32.h>
 
+#define BAD_PARAMETERS 1
+
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure ( HWND, UINT, WPARAM, LPARAM );
 
@@ -47,7 +49,7 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
 
     // If something when wrong abort
 	if ( (strcmp(cApp, "") == 0) | (MaximumWorkingSetSize == 0) | (ProcessMemoryLimit == 0))
-        return 0;
+        return BAD_PARAMETERS;
 
     // Convert from Mbytes to bytes
 	MinimumWorkingSetSize *= 1024 * 1024;

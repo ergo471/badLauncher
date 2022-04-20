@@ -21,7 +21,8 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
                      HINSTANCE hPrevInstance,
                      LPSTR lpszArgument,
                      int nCmdShow )
-{
+{	
+	// + Get configuration from Limiter.ini
     char MyDir[MAX_PATH]= {0};
     GetCurrentDirectory(MAX_PATH, MyDir);
 
@@ -42,16 +43,21 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     unsigned long long CheckMiliSec, PauseMiliSec;
     CheckMiliSec= GetPrivateProfileInt("Global", "CheckMiliSec", 1000, IniPath);
     PauseMiliSec= GetPrivateProfileInt("Global", "PauseMiliSec", 1, IniPath);
+	// - Get configuration from Limiter.ini
 
-    if ( (strcmp(cApp, "") == 0) | (MaximumWorkingSetSize == 0) | (ProcessMemoryLimit == 0))
+    // If something when wrong abort
+	if ( (strcmp(cApp, "") == 0) | (MaximumWorkingSetSize == 0) | (ProcessMemoryLimit == 0))
         return 0;
 
-    MinimumWorkingSetSize *= 1024 * 1024;
+    // Convert from Mbytes to bytes
+	MinimumWorkingSetSize *= 1024 * 1024;
     MaximumWorkingSetSize *= 1024 * 1024;
     ProcessMemoryLimit *= 1024 * 1024;
+	
 
 
-    HANDLE hJob = CreateJobObject ( NULL, TEXT("p667") );
+    // Create Job to impose limits
+	HANDLE hJob = CreateJobObject ( NULL, TEXT("p667") );
 
     JOBOBJECT_EXTENDED_LIMIT_INFORMATION jLimits = {0};
 
@@ -62,7 +68,8 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     jLimits.BasicLimitInformation.MaximumWorkingSetSize = MaximumWorkingSetSize;
     jLimits.BasicLimitInformation.LimitFlags |= JOB_OBJECT_LIMIT_WORKINGSET;
 
-    SetInformationJobObject ( hJob, JobObjectExtendedLimitInformation, &jLimits, sizeof ( jLimits ) );
+    // Set limits to Job
+	SetInformationJobObject ( hJob, JobObjectExtendedLimitInformation, &jLimits, sizeof ( jLimits ) );
 
     STARTUPINFO si = { sizeof ( si ) };
     PROCESS_INFORMATION pi;
@@ -79,7 +86,8 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     {
         HANDLE snap;
 
-        DWORD waitCode = WaitForSingleObject(pi.hProcess, CheckMiliSec);
+        // + See if process is over ...
+		DWORD waitCode = WaitForSingleObject(pi.hProcess, CheckMiliSec);
         switch ( waitCode )
         {
         case WAIT_TIMEOUT:
@@ -90,8 +98,10 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
             exitWhile = 0;
             break;
         }
+		// - See if process is over ...
 
-        snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, pi.dwProcessId);
+        // Suspend process
+		snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, pi.dwProcessId);
         if (snap)
         {
             THREADENTRY32 threadEntry;
@@ -112,8 +122,12 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
             }
             CloseHandle(snap);
         }
-        Sleep(PauseMiliSec);
-        snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, pi.dwProcessId);
+		
+        // Wait for the next check
+		Sleep(PauseMiliSec);
+		
+        // Resume process
+		snap = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, pi.dwProcessId);
         if (snap)
         {
             THREADENTRY32 threadEntry;

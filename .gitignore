@@ -1,0 +1,11 @@
+# vim tmp files
+*.swp
+
+# Object files
+*.o
+
+# Build executables (Windows)
+*.exe
+
+# Buil executables (Linux)
+# Pending

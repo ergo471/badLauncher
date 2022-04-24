@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -std=c++11
 
 main: main.o limiter.o
 	$(CC) $(CFLAGS) -o main main.o limiter.o

@@ -1,0 +1,30 @@
+#include "widget.h"
+#include "ui_widget.h"
+#include <QFileDialog>
+#include <QDebug>
+
+Widget::Widget(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::Widget)
+{
+    ui->setupUi(this);
+//    ui->listWidget->
+//    ui->listWidget->setViewMode(ViewMode::IconMode);
+    new QListWidgetItem(tr("Oak"), ui->listWidget);
+    QListWidgetItem *newItem = new QListWidgetItem;
+    newItem->setText("itemText");
+    ui->listWidget->insertItem(1, newItem);
+}
+
+Widget::~Widget()
+{
+    delete ui;
+}
+
+void Widget::on_addBtn_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(
+                this,tr("Open Image"), "/home", tr("Image Files (*.png *.jpg *.bmp)"));
+    appsDir.push_back(fileName);
+
+}

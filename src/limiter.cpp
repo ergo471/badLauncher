@@ -2,7 +2,9 @@
 
 Limiter::Limiter(): jLimits{0}
 {
+#ifdef _WIN32
     hJob = CreateJobObject ( NULL, NULL );
+#endif // _WIN32
 }
 
 bool Limiter::setApp(string app)
@@ -35,7 +37,9 @@ bool Limiter::setMinimumWorkingSetSize(unsigned int MB)
 
 unsigned int Limiter::getMinimumWorkingSetSize() const
 {
+#ifdef _WIN32
     return jLimits.BasicLimitInformation.MinimumWorkingSetSize;
+#endif // _WIN32
 }
 
 bool Limiter::setMaximumWorkingSetSize(unsigned int MB)
@@ -56,7 +60,9 @@ bool Limiter::setMaximumWorkingSetSize(unsigned int MB)
 
 unsigned int Limiter::getMaximumWorkingSetSize() const
 {
+#ifdef _WIN32
     return jLimits.BasicLimitInformation.MaximumWorkingSetSize;
+#endif // _WIN32
 }
 
 bool Limiter::setProcessMemoryLimit(unsigned int MB)
@@ -77,7 +83,9 @@ bool Limiter::setProcessMemoryLimit(unsigned int MB)
 
 unsigned int Limiter::getProcessMemoryLimit() const
 {
+#ifdef _WIN32
     return jLimits.ProcessMemoryLimit;
+#endif // _WIN32
 }
 
 void Limiter::applyLimits()

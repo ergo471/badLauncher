@@ -15,37 +15,47 @@ QString Widget::cutName(QString s)
     return ans;
 }
 
+QIcon Widget::getIconfromApp(QString app)
+{
+    QFileInfo file(app);
+    QFileIconProvider *fIcon = new QFileIconProvider();
+    QIcon icon = fIcon->icon(file);
+    return icon;
+}
+
 Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
     ui->setupUi(this);
-//    ui->listWidget->addItem("pepe");
     ui->listWidget->setViewMode(QListView::IconMode);
-//    QListWidgetItem *newItem = new QListWidgetItem(ui->listWidget);
-//    newItem->setText("itemText");
 }
 
 void Widget::addToList(QString app)
 {
-    QFileInfo f(app);
-    QFileIconProvider *fi = new QFileIconProvider();
-    QIcon ic = fi->icon(f);
-
-    appsDir.append(app);
 
     QListWidgetItem *newItem = new QListWidgetItem;
     newItem->setText(cutName(app));
-    newItem->setIcon(ic);
-
+    newItem->setIcon(getIconfromApp(app));
     ui->listWidget->addItem(newItem);
+
+    datos appData;
+    appData.dir = appData;
+    appsDir.append(app);
+
 }
 
 
 void Widget::on_addBtn_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(
-                this,tr("Open Image"), "/home", tr("Exe Files (*.exe *.jpg *.bmp *.png)"));
+    QString selectedFilter;
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                tr("Open App"),
+                                "/home",
+                                tr("Exe Files (*.exe)"),
+                                &selectedFilter);
+//    QString fileName = QFileDialog::getOpenFileName(
+//                this,tr("Open Image"), "/home", tr("Exe Files (*.exe *.jpg *.bmp *.png)"));
     addToList(fileName);
 }
 

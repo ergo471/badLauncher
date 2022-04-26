@@ -14,7 +14,7 @@
    <string>Widget</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(255, 255, 255);
+   <string notr="true">/*background-color: rgb(255, 255, 255);*/
 </string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -40,11 +40,9 @@
        </property>
        <property name="styleSheet">
         <string notr="true">QPushButton#addBtn {
-/*background-color: rgb(255, 254, 237);*/
+
 color: rgb(40, 40, 40);
-/*border:  1px solid #000;*/
-/*border-radius:  8px;*/
-background-color: rgb(220,220,220);
+background-color: rgb(150,150,150);
 border-radius: 6px;
 border-style: inset;
 border-width: 1px;
@@ -53,7 +51,8 @@ border-color: rgba(0,0,0,70);
 
 QPushButton#addBtn:pressed{
 	background-color: rgb(180,180,180);
-}</string>
+}
+</string>
        </property>
        <property name="text">
         <string>+</string>
@@ -78,13 +77,13 @@ QPushButton#addBtn:pressed{
    <item row="0" column="0">
     <widget class="QListWidget" name="listWidget">
      <property name="styleSheet">
-      <string notr="true">
+      <string notr="true">/*
 border-radius: 6px;
 border-style: inset;
 border-width: 1px;
 border-color: rgba(0,0,0,70);
 background-color: rgb(40, 40, 40);
-</string>
+*/</string>
      </property>
     </widget>
    </item>

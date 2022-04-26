@@ -18,6 +18,7 @@ class Widget : public QWidget
     Q_OBJECT
 private:
     QString cutName(QString s);
+    QIcon getIconfromApp(QString app);
 public:
     explicit Widget(QWidget *parent = 0);
     void addToList(QString app);

@@ -9,8 +9,11 @@ class Widget;
 }
 
 typedef struct{
-    QString dir;
-    int memory;
+    QString appDir, workDir;
+    unsigned long long MinimumWorkingSetSize = 256,
+                       MaximumWorkingSetSize = 2000,
+                       ProcessMemoryLimit;
+    unsigned long long CheckMiliSec = 1000, PauseMiliSec = 0;
 }datos;
 
 class Widget : public QWidget
@@ -19,6 +22,9 @@ class Widget : public QWidget
 private:
     QString cutName(QString s);
     QIcon getIconfromApp(QString app);
+    void removeFromList(QString app);
+    void createMenu(QPoint pos);
+    void setActions();
 public:
     explicit Widget(QWidget *parent = 0);
     void addToList(QString app);
@@ -26,11 +32,16 @@ public:
 
 private slots:
     void on_addBtn_clicked();
+    void on_rmBtn_clicked();
+    void runApp();
+    void configApp();
 
 private:
     Ui::Widget *ui;
-    QList<QString> appsDir;
-    QList<datos> pap;
+    QList<datos> appsOpt;
+    QAction *run;
+    QAction *config;
+    QAction *remove;
 };
 
 #endif // WIDGET_H

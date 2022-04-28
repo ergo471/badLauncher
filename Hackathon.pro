@@ -27,12 +27,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        widget.cpp
+        widget.cpp \
+    modalconfig.cpp
 
 HEADERS += \
-        widget.h
+        widget.h \
+    modalconfig.h
 
 FORMS += \
-        widget.ui
+    modalconfig.ui
 
 RESOURCES +=

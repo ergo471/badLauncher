@@ -3,18 +3,13 @@
 
 #include <QWidget>
 #include <QList>
+#include "modalconfig.h"
 
 namespace Ui {
 class Widget;
 }
 
-typedef struct{
-    QString appDir, workDir;
-    unsigned long long MinimumWorkingSetSize = 256,
-                       MaximumWorkingSetSize = 2000,
-                       ProcessMemoryLimit;
-    unsigned long long CheckMiliSec = 1000, PauseMiliSec = 0;
-}datos;
+class QMenu;
 
 class Widget : public QWidget
 {
@@ -22,12 +17,14 @@ class Widget : public QWidget
 private:
     QString cutName(QString s);
     QIcon getIconfromApp(QString app);
-    void removeFromList(QString app);
     void createMenu(QPoint pos);
     void setActions();
+    void setConfigModal();
+    void showAppOpt(int idx);
 public:
     explicit Widget(QWidget *parent = 0);
     void addToList(QString app);
+    void assingValues(int idx);
     ~Widget();
 
 private slots:
@@ -42,6 +39,8 @@ private:
     QAction *run;
     QAction *config;
     QAction *remove;
+    QMenu *menu;
+    modalConfig *mod;
 };
 
 #endif // WIDGET_H

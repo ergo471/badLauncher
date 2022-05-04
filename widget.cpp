@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include <QFile>
+#include <QProcess>
 #include <QIcon>
 #include <QFileIconProvider>
 #include <QFileDialog>

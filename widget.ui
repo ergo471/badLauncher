@@ -56,10 +56,8 @@ background-color: rgb(40, 40, 40);
 
 color: rgb(40, 40, 40);
 background-color: rgb(150,150,150);
+border: 1px  inset rgba(0,0,0,70);
 border-radius: 6px;
-border-style: inset;
-border-width: 1px;
-border-color: rgba(0,0,0,70);
 }
 
 QPushButton#addBtn:pressed{
@@ -98,10 +96,8 @@ QPushButton#addBtn:pressed{
 
 color: rgb(40, 40, 40);
 background-color: rgb(150,150,150);
+border: 1px  inset rgba(0,0,0,70);
 border-radius: 6px;
-border-style: inset;
-border-width: 1px;
-border-color: rgba(0,0,0,70);
 }
 
 QPushButton#rmBtn:pressed{

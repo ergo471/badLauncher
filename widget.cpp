@@ -29,13 +29,15 @@ QIcon Widget::getIconfromApp(QString app)
 void Widget::createMenu(QPoint pos)
 {
     menu->popup(pos);
+
 }
 
 void Widget::setActions()
 {
-    run = new QAction("Run", this);
-    config = new QAction("Config", this);
-    remove = new QAction("Remove", this);
+    run = new QAction(QIcon(":/images/play.png"),"Run", this);
+    config = new QAction(QIcon(":/images/settings.png"),"Settings", this);
+    remove = new QAction(QIcon(":/images/Trash.png"),"Remove", this);
+
 
     //esto conecta las acciones del menu de las apps
     connect(run, &QAction::triggered, this, &Widget::runApp);
@@ -58,8 +60,6 @@ void Widget::setConfigModal()
 {
     mod = new modalConfig(this);
 
-//    connect(mod, &QDialog::)
-
     connect(mod, &QDialog::accepted, this, [&](){
         int idx = ui->listWidget->currentRow();
         assingValues(idx);
@@ -80,7 +80,7 @@ Widget::Widget(QWidget *parent) :
     setConfigModal();
 
     //testing purposes...
-    addToList("/home/jmlopez/Documents/nada.jpg");
+    addToList("/home/jmlopez/Documentsas/nasasdasda.jpg");
 }
 
 Widget::~Widget()
@@ -105,7 +105,6 @@ void Widget::addToList(QString app)
     //muestra el menu de opciones
     connect(ui->listWidget, &QListWidget::itemClicked, this, [&](){
         createMenu(cursor().pos());
-
     });
 
     //Agregar a la lista
@@ -128,14 +127,16 @@ void Widget::assingValues(int idx)
 //Agregar una nueva app
 void Widget::on_addBtn_clicked()
 {
-    QString selectedFilter;
+//    QString selectedFilter;
     QString fileName = QFileDialog::getOpenFileName(this,
                                 tr("Open App"),
                                 "/home",
-                                tr("Exe Files (*.exe *.png *.jpg)"),
-                                &selectedFilter);
-    qDebug() << fileName << '\n';
-    addToList(fileName);
+                                tr("Exe Files (*.exe *.png *.jpg)"));
+
+    if(fileName != nullptr){
+        qDebug() << fileName << '\n';
+        addToList(fileName);
+    }
 }
 
 void Widget::on_rmBtn_clicked()

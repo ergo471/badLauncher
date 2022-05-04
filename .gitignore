@@ -16,3 +16,6 @@
 *.layout
 bin/
 obj/
+
+#todo list
+toDo.txt

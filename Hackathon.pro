@@ -35,6 +35,10 @@ HEADERS += \
     modalconfig.h
 
 FORMS += \
-    modalconfig.ui
+    modalconfig.ui \
+    widget.ui
 
-RESOURCES +=
+RESOURCES += \
+    sources.qrc
+
+DISTFILES +=

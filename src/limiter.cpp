@@ -79,7 +79,7 @@ bool Limiter::setProcessMemoryLimit(unsigned long MB)
 #ifdef _WIN32
     // Code for Windows Platform
     unsigned long MAX_MB = 3uL *1024*1024*1024;
-    if (MB > 0 && MB <= MAX_MB )
+    if (MB > 0)
     {
         jLimits.ProcessMemoryLimit = MB * 1024*1024;
         jLimits.BasicLimitInformation.LimitFlags |= JOB_OBJECT_LIMIT_PROCESS_MEMORY;
@@ -122,10 +122,8 @@ void Limiter::run()
         wstring tmpWstring(apps[i].begin(), apps[i].end());
         wcscpy(buffer, tmpWstring.c_str());
 
-        STARTUPINFO *SI = &(v_si[i]);
-
         CreateProcess ( NULL, buffer, NULL, NULL, FALSE,
-                        CREATE_SUSPENDED, NULL, L".", SI, &v_pi[i] );
+                        CREATE_SUSPENDED, NULL, L".", &v_si[i], &v_pi[i] );
 
         AssignProcessToJobObject ( hJob, v_pi[i].hProcess );
 

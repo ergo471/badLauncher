@@ -1,7 +1,7 @@
 #if defined(UNICODE) && !defined(_UNICODE)
-#define _UNICODE
+    #define _UNICODE
 #elif defined(_UNICODE) && !defined(UNICODE)
-#define UNICODE
+    #define UNICODE
 #endif
 
 #define _WIN32_WINNT 0x0500
@@ -11,7 +11,13 @@
 #include <stdio.h>
 #include <tlhelp32.h>
 
+#include <iostream>
+using namespace std;
+
+#include "include/limiter.h"
+
 #define BAD_PARAMETERS 1
+
 
 /*  Declare Windows procedure  */
 LRESULT CALLBACK WindowProcedure ( HWND, UINT, WPARAM, LPARAM );
@@ -24,31 +30,46 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
                      LPSTR lpszArgument,
                      int nCmdShow )
 {	
-	// + Get configuration from Limiter.ini
-    char MyDir[MAX_PATH]= {0};
+    Limiter algo;
+    algo.addApp("c:\\autorun.inf\\a.ex_");
+    algo.addApp("c:\\autorun.inf");
+    algo.addApp("c:\\autorun.inf\\b.ex_");
+    algo.setProcessMemoryLimit(3096);
+
+    algo.setMaximumWorkingSetSize(2048);
+    algo.setMinimumWorkingSetSize(1);
+
+    algo.applyLimits();
+    algo.run();
+
+    /*
+    // + Get configuration from Limiter.ini
+    TCHAR MyDir[MAX_PATH]= {0};
     GetCurrentDirectory(MAX_PATH, MyDir);
 
-    char IniPath[MAX_PATH]= {0};
-    strcat(IniPath, MyDir);
-    strcat(IniPath, "\\Limiter.ini");
+    TCHAR IniPath[MAX_PATH]= {0};
 
-    char cApp[MAX_PATH]= {0};
-    char cWorkDir[MAX_PATH]= {0};
+    lstrcat (IniPath, MyDir);
+    lstrcat (IniPath, _T("\\Limiter.ini"));
+
+    TCHAR cApp[MAX_PATH]= {0};
+    TCHAR cWorkDir[MAX_PATH]= {0};
     unsigned long long MinimumWorkingSetSize, MaximumWorkingSetSize, ProcessMemoryLimit;
 
-    GetPrivateProfileString("Global", "Exe", "", cApp, sizeof(cApp), IniPath);
-    GetPrivateProfileString("Global", "WorkDir", "", cWorkDir, sizeof(cWorkDir), IniPath);
-    MinimumWorkingSetSize= GetPrivateProfileInt("Global", "MinimumWorkingSetSize", 0, IniPath);
-    MaximumWorkingSetSize= GetPrivateProfileInt("Global", "MaximumWorkingSetSize", 0, IniPath);
-    ProcessMemoryLimit= GetPrivateProfileInt("Global", "ProcessMemoryLimit", 0, IniPath);
+    GetPrivateProfileString(_T("Global"), _T("Exe"), _T(""), cApp, sizeof(cApp), IniPath);
+    auto aaaaa = GetLastError();
+    GetPrivateProfileString(_TEXT("Global"), _TEXT("WorkDir"), _TEXT(""), cWorkDir, sizeof(cWorkDir), IniPath);
+    MinimumWorkingSetSize= GetPrivateProfileInt(_T("Global"), _T("MinimumWorkingSetSize"), 0, IniPath);
+    MaximumWorkingSetSize= GetPrivateProfileInt(_T("Global"), _T("MaximumWorkingSetSize"), 0, IniPath);
+    ProcessMemoryLimit= GetPrivateProfileInt(_T("Global"), _T("ProcessMemoryLimit"), 0, IniPath);
 
     unsigned long long CheckMiliSec, PauseMiliSec;
-    CheckMiliSec= GetPrivateProfileInt("Global", "CheckMiliSec", 1000, IniPath);
-    PauseMiliSec= GetPrivateProfileInt("Global", "PauseMiliSec", 1, IniPath);
+    CheckMiliSec= GetPrivateProfileInt(_T("Global"), _T("CheckMiliSec"), 1000, IniPath);
+    PauseMiliSec= GetPrivateProfileInt(_T("Global"), _T("PauseMiliSec"), 1, IniPath);
 	// - Get configuration from Limiter.ini
 
     // If something when wrong abort
-	if ( (strcmp(cApp, "") == 0) | (MaximumWorkingSetSize == 0) | (ProcessMemoryLimit == 0))
+    if ( (lstrcmp(cApp, _T("")) == 0) | (MaximumWorkingSetSize == 0) | (ProcessMemoryLimit == 0))
         return BAD_PARAMETERS;
 
     // Convert from Mbytes to bytes
@@ -56,8 +77,6 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     MaximumWorkingSetSize *= 1024 * 1024;
     ProcessMemoryLimit *= 1024 * 1024;
 	
-
-
     // Create Job to impose limits
 	HANDLE hJob = CreateJobObject ( NULL, TEXT("p667") );
 
@@ -69,11 +88,15 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     jLimits.BasicLimitInformation.MinimumWorkingSetSize = MinimumWorkingSetSize;
     jLimits.BasicLimitInformation.MaximumWorkingSetSize = MaximumWorkingSetSize;
     jLimits.BasicLimitInformation.LimitFlags |= JOB_OBJECT_LIMIT_WORKINGSET;
+    */
 
-    // Set limits to Job
+
+    /*   // Set limits to Job
 	SetInformationJobObject ( hJob, JobObjectExtendedLimitInformation, &jLimits, sizeof ( jLimits ) );
 
-    STARTUPINFO si = { sizeof ( si ) };
+    STARTUPINFO si;
+    memset(&si, 0, sizeof(si));
+    si.cb = sizeof ( si );
     PROCESS_INFORMATION pi;
 
     CreateProcess ( NULL, cApp, NULL, NULL, FALSE,
@@ -154,7 +177,7 @@ int WINAPI WinMain ( HINSTANCE hThisInstance,
     CloseHandle ( pi.hThread );
 
     CloseHandle ( pi.hProcess );
-    CloseHandle ( hJob );
+    CloseHandle ( hJob );*/
 
     return 0;
 }

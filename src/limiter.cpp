@@ -28,6 +28,11 @@ string Limiter::getApp(unsigned int index) const
     return apps.at(index);
 }
 
+unsigned int Limiter::howManyApps() const
+{
+    return apps.size();
+}
+
 bool Limiter::setMinimumWorkingSetSize(unsigned long MB)
 {
 #ifdef _WIN32

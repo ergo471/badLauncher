@@ -40,6 +40,8 @@ public:
     bool addApp(string app);
     string getApp(unsigned int index) const;
 
+    unsigned int howManyApps() const;
+
     bool setMinimumWorkingSetSize(unsigned long MB);
     unsigned long getMinimumWorkingSetSize() const;
 

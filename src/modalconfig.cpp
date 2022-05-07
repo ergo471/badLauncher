@@ -1,4 +1,4 @@
-#include "modalconfig.h"
+#include "../include/modalconfig.h"
 #include "ui_modalconfig.h"
 
 modalConfig::modalConfig(QWidget *parent) :

@@ -1,5 +1,3 @@
-#include "widget.h"
-#include "ui_widget.h"
 #include <QFile>
 #include <QProcess>
 #include <QIcon>
@@ -7,6 +5,9 @@
 #include <QFileDialog>
 #include <QDebug>
 #include <QMenu>
+
+#include "../include/widget.h"
+#include "ui_widget.h"
 
 #define iconSize 64
 

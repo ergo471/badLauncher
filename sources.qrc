@@ -3,5 +3,11 @@
         <file>images/settings.png</file>
         <file>images/Trash.png</file>
         <file>images/play.png</file>
+        <file>images/plus-round.png</file>
+        <file>images/minus-trash.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>images/Poppins-Regular.ttf</file>
+        <file>images/Poppins-Bold.ttf</file>
     </qresource>
 </RCC>

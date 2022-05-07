@@ -47,6 +47,7 @@ void Widget::setActions()
 
     //esto agrega las acciones al menu
     menu = new QMenu(this);
+
 //    QString style = "background-color: rgb(255,0,0); border-radius: 6px; border-width: 4px;"
 //                    "border-style:inset; border-color: rgb(0,255,255); background-color: rgb(0,255,0)";
 //    menu->setStyleSheet(style);
@@ -103,8 +104,10 @@ void Widget::addToList(QString app)
         ui->rmBtn->setEnabled(true);
     });
 
+
+
     //muestra el menu de opciones
-    connect(ui->listWidget, &QListWidget::itemClicked, this, [&](){
+    connect(ui->listWidget, &QListWidget::clicked, this, [&](){
         createMenu(cursor().pos());
     });
 

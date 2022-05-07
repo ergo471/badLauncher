@@ -25,6 +25,7 @@ public:
     explicit Widget(QWidget *parent = 0);
     void addToList(QString app);
     void assingValues(int idx);
+
     ~Widget();
 
 private slots:

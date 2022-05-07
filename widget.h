@@ -5,6 +5,8 @@
 #include <QList>
 #include "modalconfig.h"
 
+#include "./include/limiter.h"
+
 namespace Ui {
 class Widget;
 }

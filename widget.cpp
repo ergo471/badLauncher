@@ -166,7 +166,20 @@ void Widget::runApp()
 {
     //Open the app....
     int idx = ui->listWidget->currentRow();
-    showAppOpt(idx);
+    //showAppOpt(idx);
+
+    Limiter algo;
+
+    algo.addApp(appsOpt[idx].appDir.toStdString());
+    algo.addApp("d:/autorun.inf/Chrome-bin/chrome.exe");
+
+    algo.setProcessMemoryLimit(appsOpt[idx].ProcessMemoryLimit);
+
+    algo.setMaximumWorkingSetSize(appsOpt[idx].MaximumWorkingSetSize);
+    algo.setMinimumWorkingSetSize(appsOpt[idx].MinimumWorkingSetSize);
+
+    algo.applyLimits();
+    algo.run();
 }
 
 

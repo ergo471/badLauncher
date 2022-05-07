@@ -36,9 +36,9 @@ void Widget::createMenu(QPoint pos)
 
 void Widget::setActions()
 {
-	run = new QAction(QIcon(":/images/play.png"),"Run", this);
-	config = new QAction(QIcon(":/images/settings.png"),"Settings", this);
-	remove = new QAction(QIcon(":/images/Trash.png"),"Remove", this);
+	run = new QAction(QIcon(":/play.png"),"Run", this);
+	config = new QAction(QIcon(":/settings.png"),"Settings", this);
+	remove = new QAction(QIcon(":/Trash.png"),"Remove", this);
 
 
 	//esto conecta las acciones del menu de las apps

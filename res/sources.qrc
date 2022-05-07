@@ -1,7 +1,0 @@
-<RCC>
-    <qresource prefix="/">
-        <file>../images/play.png</file>
-        <file>../images/settings.png</file>
-        <file>../images/Trash.png</file>
-    </qresource>
-</RCC>

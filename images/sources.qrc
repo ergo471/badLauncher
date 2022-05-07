@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>settings.png</file>
+        <file>Trash.png</file>
+        <file>play.png</file>
+        <file>plus-round.png</file>
+        <file>minus-trash.png</file>
+    </qresource>
+    <qresource prefix="/fonts">
+        <file>Poppins-Regular.ttf</file>
+        <file>Poppins-Bold.ttf</file>
+    </qresource>
+</RCC>

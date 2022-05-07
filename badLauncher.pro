@@ -41,6 +41,6 @@ FORMS += \
     ui/widget.ui
 
 RESOURCES += \
-    res/sources.qrc
+    images/sources.qrc
 
 DISTFILES +=

@@ -8,26 +8,26 @@ class modalConfig;
 }
 
 typedef struct{
-    QString appDir, workDir;
-    unsigned long long MinimumWorkingSetSize = 1,
-                       MaximumWorkingSetSize = 512,
-                       ProcessMemoryLimit = 2048;
-    unsigned long long CheckMiliSec = 1000, PauseMiliSec = 0;
+	QString appDir, workDir;
+	unsigned long long MinimumWorkingSetSize = 1,
+	MaximumWorkingSetSize = 512,
+	ProcessMemoryLimit = 2048;
+	unsigned long long CheckMiliSec = 1000, PauseMiliSec = 0;
 }datos;
 
 
 class modalConfig : public QDialog
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit modalConfig(QWidget *parent = 0);
-    datos getValues();
-    void setValues(datos app);
-    ~modalConfig();
+	explicit modalConfig(QWidget *parent = 0);
+	datos getValues();
+	void setValues(datos app);
+	~modalConfig();
 
 private:
-    Ui::modalConfig *ui;
+	Ui::modalConfig *ui;
 };
 
 #endif // MODALCONFIG_H

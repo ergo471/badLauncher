@@ -29,12 +29,14 @@ SOURCES += \
         main.cpp \
     src/limiter.cpp \
     src/modalconfig.cpp \
-    src/widget.cpp
+    src/widget.cpp \
+    src/jobtree.cpp
 
 HEADERS += \
     include/limiter.h \
     include/modalconfig.h \
-    include/widget.h
+    include/widget.h \
+    include/jobtree.h
 
 FORMS += \
     ui/modalconfig.ui \

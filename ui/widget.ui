@@ -24,19 +24,6 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QListWidget" name="listWidget">
-     <property name="styleSheet">
-      <string notr="true">QListWidget#listWidget{
-
-border-radius: 6px;
-border: 1px solid;
-border-color: rgba(0,0,0,70);
-
-}</string>
-     </property>
-    </widget>
-   </item>
-   <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QPushButton" name="addBtn">
@@ -161,6 +148,9 @@ QPushButton#rmBtn:disabled{
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>

@@ -6,6 +6,7 @@ modalConfig::modalConfig(QWidget *parent) :
 	ui(new Ui::modalConfig)
 {
 	ui->setupUi(this);
+
 }
 
 datos modalConfig::getValues()

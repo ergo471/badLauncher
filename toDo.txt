@@ -1,4 +1,6 @@
 Por Hacer:
--Buscar como limitar memoria, procesamiento etc.. en Linux
+-Cambiar la estructura a un QTreeWidget
 -Hacer persistente (guardar en BD) las app con sus configuraciones
 -Hacer un boton "Acerca de:"
+-Buscar como limitar memoria, procesamiento etc.. en Linux
+

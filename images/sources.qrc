@@ -5,9 +5,9 @@
         <file>play.png</file>
         <file>plus-round.png</file>
         <file>minus-trash.png</file>
+        <file>cube.png</file>
     </qresource>
     <qresource prefix="/fonts">
-        <file>Poppins-Regular.ttf</file>
-        <file>Poppins-Bold.ttf</file>
+        <file>Raleway-SemiBold.ttf</file>
     </qresource>
 </RCC>

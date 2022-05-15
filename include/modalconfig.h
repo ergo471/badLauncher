@@ -8,7 +8,7 @@ class modalConfig;
 }
 
 typedef struct{
-	QString appDir, workDir;
+    QStringList appDir, workDir;
 	unsigned long long MinimumWorkingSetSize = 1,
 	MaximumWorkingSetSize = 512,
 	ProcessMemoryLimit = 2048;

@@ -7,32 +7,28 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>242</height>
+    <height>216</height>
    </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Raleway</family>
+    <pointsize>9</pointsize>
+    <weight>50</weight>
+    <italic>false</italic>
+    <bold>false</bold>
+   </font>
   </property>
   <property name="windowTitle">
    <string>Settings</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">font: 9pt &quot;Poppins&quot;;</string>
+   <string notr="true">font: 9pt &quot;Raleway&quot;;
+</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
-     <item>
-      <layout class="QHBoxLayout" name="horizontalLayout">
-       <item>
-        <widget class="QLabel" name="pro_label">
-         <property name="text">
-          <string>ProcessMemoryLimit:</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLineEdit" name="pro_lineEdit"/>
-       </item>
-      </layout>
-     </item>
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
        <item>
@@ -43,7 +39,23 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="min_lineEdit"/>
+        <widget class="QLineEdit" name="min_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -52,12 +64,52 @@
        <item>
         <widget class="QLabel" name="max_label">
          <property name="text">
-          <string>MaximumWorkingSetSize</string>
+          <string>MaximumWorkingSetSize:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="max_lineEdit"/>
+        <widget class="QLineEdit" name="max_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="pro_label">
+         <property name="text">
+          <string>ProcessMemoryLimit:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="pro_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -66,12 +118,25 @@
        <item>
         <widget class="QLabel" name="checkM_label">
          <property name="text">
-          <string>CheckMiliSec</string>
+          <string>CheckMiliSeconds:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="checkM_lineEdit"/>
+        <widget class="QLineEdit" name="checkM_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>
@@ -80,12 +145,25 @@
        <item>
         <widget class="QLabel" name="pauseM_label">
          <property name="text">
-          <string>PauseMiliSec</string>
+          <string>PauseMiliSeconds:</string>
          </property>
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="pauseM_lineEdit"/>
+        <widget class="QLineEdit" name="pauseM_lineEdit">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>220</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
        </item>
       </layout>
      </item>

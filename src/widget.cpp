@@ -13,7 +13,7 @@
 QString Widget::cutName(QString s)
 {
 	QString ans = "";
-	for(int i = s.size()-1; i >= 0 && s[i] != '/'; i--){
+    for(int i = s.size()-1; i >= 0 && s[i] != '/'; i--){
 		ans = s[i] + ans;
 	}
 	return ans;
@@ -90,20 +90,28 @@ void Widget::setConfigJobTree()
             jobsTree->openPersistentEditor(jobsTree->currentItem(),0);
     });
     connect(jobsTree, &JobTree::currentItemChanged, this, [=](QTreeWidgetItem *curr,QTreeWidgetItem *prev){
-        if(jobsTree->isPersistentEditorOpen(prev))
             jobsTree->closePersistentEditor(prev,0);
+            ui->rmBtn->setEnabled(true);
         (void)curr;
+    });
+
+    connect(jobsTree,&JobTree::enterPress, this, [=](){
+        QTreeWidgetItem *el = jobsTree->currentItem();
+        jobsTree->closePersistentEditor(el,0);
+        jobsTree->setCurrentItem(el);
     });
 
     //muestra el menu de opciones
     connect(jobsTree, &JobTree::rightClick, this, [=](QPoint pos){
         QTreeWidgetItem *el = jobsTree->itemAt(pos);
-        if(el!=jobsTree->currentItem()){
+        if(el!=jobsTree->currentItem() || jobsTree->currentItem() == nullptr){
             return;
         }
         if(el->parent()==nullptr)
             createMenu(cursor().pos());
     });
+
+
 }
 
 

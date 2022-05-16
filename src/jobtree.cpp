@@ -30,3 +30,13 @@ void JobTree::mousePressEvent(QMouseEvent *event)
     }
 }
 
+void JobTree::keyPressEvent(QKeyEvent *event)
+{
+    if(event->key() == 16777220){//Enter
+        emit enterPress();
+    }
+    else{
+        QTreeWidget::keyPressEvent(event);
+    }
+}
+
